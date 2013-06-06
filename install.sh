@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HBIN_FONT_DIR=$HOME/.font
+HBIN_FONT_DIR=$HOME/.fonts
 HBIN_FONTS=("Menlo-Regular.ttf"  "Monaco-Linux.ttf")
 
 function die () {
@@ -13,7 +13,11 @@ cat <<EOF
 --------------------------
  Top Programming Fonts!
 --------------------------
-  - Created and maintained by hbin
+  - Created by hbin
+
+  This install download and link (hardlink) the fonts.
+
+  shameless stolen by zzeroo!
 
 EOF
 
@@ -26,7 +30,7 @@ for i in ${HBIN_FONTS[*]}; do
     echo "Downloading $i"; echo
     wget -c https://github.com/hbin/top-programming-fonts/raw/master/$i \
       || die "Fail to download ${i}"
-    mv $i $HBIN_FONT_DIR || die "Could not install $i"
+    ln $i $HBIN_FONT_DIR || die "Could not install $i"
     echo "Installed $i successfully"; echo
 done
 
