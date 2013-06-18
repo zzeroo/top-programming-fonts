@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HBIN_FONT_DIR=$HOME/.fonts
-HBIN_FONTS=("Menlo-Regular.ttf"  "Monaco-Linux.ttf")
+ZZ_FONT_DIR=$HOME/.fonts
+ZZ_FONTS=("Menlo-Regular.ttf"  "Monaco-Linux.ttf")
 
 function die () {
     echo "${@}"
@@ -22,15 +22,15 @@ cat <<EOF
 EOF
 
 # Create font dir if not exists
-if [[ ! -e $HBIN_FONT_DIR ]]; then
-    mkdir $HBIN_FONT_DIR || die "Could not make $HBIN_FONT_DIR"
+if [[ ! -e $ZZ_FONT_DIR ]]; then
+    mkdir $ZZ_FONT_DIR || die "Could not make $HBIN_FONT_DIR"
 fi
 
-for i in ${HBIN_FONTS[*]}; do
+for i in ${ZZ_FONTS[*]}; do
     echo "Downloading $i"; echo
-    wget -c https://github.com/hbin/top-programming-fonts/raw/master/$i \
+    wget -c https://github.com/zzeroo/top-programming-fonts/raw/master/$i \
       || die "Fail to download ${i}"
-    ln $i $HBIN_FONT_DIR || die "Could not install $i"
+    ln $i $ZZ_FONT_DIR || die "Could not install $i"
     echo "Installed $i successfully"; echo
 done
 
@@ -40,6 +40,6 @@ cat <<EOF
  Fonts installed! Enjoying!
 --------------------------
   - If you have any question, pls
-    mail to <embrace.hbin@gmail.com>
+    mail to <co@zzeroo.com>
 
 EOF
