@@ -16,5 +16,5 @@ FOR %%f IN %ZZ_FONTS% DO (
 	Echo.Downloading: %1 to %TEMP%\%1
 	powershell.exe -Command "(new-object System.Net.WebClient).DownloadFile('https://raw.github.com/zzeroo/top-programming-fonts/master/%1','%TEMP%\\%1')" >NUL
 	ECHO Copy Font: %1 to %ZZ_FONTS_DIR%\%1
-	COPY /Y /B "%TEMP%\%1" "%USERPROFILE%\"
+	COPY /Y /B "%TEMP%\%1" "%ZZ_FONTS_DIR%\%1"
 EXIT /B
