@@ -3,7 +3,7 @@
 SetLocal EnableDelayedExpansion
 CLS
 
-set ZZ_FONTS=(Menlo-Regular.ttf  Monaco.ttf)
+set ZZ_FONTS=(Menlo-Regular.ttf  MONACO.TTF)
 
 FOR %%f IN %ZZ_FONTS% DO (
 	CALL :DOWNLOAD %%f
