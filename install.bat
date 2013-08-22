@@ -3,15 +3,31 @@
 SetLocal EnableDelayedExpansion
 CLS
 
-set ZZ_FONTS=("Menlo-Regular.ttf"  "Monaco.ttf")
+set ZZ_FONTS=(Menlo-Regular.ttf  Monaco.ttf)
 
 FOR %%f IN %ZZ_FONTS% DO (
-	CALL :FONT %%f
+	CALL :DOWNLOAD %%f
+	CALL :INSTALL %%f
 )
 
-PAUSE
+ECHO "Restart Windows to activate the fonts ..."
 
-:FONT
+
+
+::Funktions (or some thing like that M)
+
+::A wget for Powershell
+:Download
+        IF "%1"=="" GOTO :EOF
+        IF "%1"==" " GOTO :EOF
+        Echo.Downloading: %1 to %TEMP%\\%1
+        ::powershell.exe -Command "(new-object System.Net.WebClient).DownloadFile('https://raw.github.com/zzeroo/top-programming-fonts/master/%1','%TEMP%\%1')" >NUL
+        powershell.exe -Command "(new-object System.Net.WebClient).DownloadFile('https://raw.github.com/zzeroo/top-programming-fonts/master/%1','%TEMP%\\%1')"
+EXIT/B
+
+
+::Hack the font name into the win reg
+:INSTALL
 	SET FFILE=%~n1%~x1
 	SET FNAME=%~n1
 	SET FNAME=%FNAME:-= %
@@ -27,4 +43,4 @@ PAUSE
 	COPY /Y %TEMP%\%FFILE% %WINDIR%\FONTS\
 	
 	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "%FNAME% %FTYPE%" /t REG_SZ /d "%FFILE%" /f
-GOTO :EOF
+EXIT/B
